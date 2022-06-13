@@ -19,7 +19,7 @@ endif()
 
 enable_testing()
 
-add_executable(ft_test test_libft.cpp)
+add_executable(ft_test libft_mem_test.cpp)
 target_compile_options(ft_test  PRIVATE "$<$<CONFIG:DEBUG>:-w>")
 target_link_libraries(ft_test libft gtest_main)
 

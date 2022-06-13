@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizsurmeli <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 18:47:42 by denizsurmeli      #+#    #+#             */
-/*   Updated: 2022/06/13 19:35:51 by denizsurmeli     ###   ########.fr       */
+/*   Created: 2022/06/13 19:15:00 by denizsurmeli      #+#    #+#             */
+/*   Updated: 2022/06/13 19:35:53 by denizsurmeli     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stddef.h>
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	size_t				i;
-	unsigned char		*s_char;
+	unsigned char	*d_to_uc;
+	unsigned char	*s_to_uc;
 
-	s_char = (unsigned char *) s;
-	i = 0;
-	while (i < n)
+	d_to_uc = (unsigned char *) dest;
+	s_to_uc = (unsigned char *) src;
+	if (dest == src)
+		return (dest);
+	if (s_to_uc < d_to_uc)
 	{
-		s_char[i] = 0;
-		i++;
+		while (len--)
+			*(d_to_uc + len) = *(s_to_uc + len);
+		return (dest);
 	}
-	s = s_char;
+	while (len--)
+		*d_to_uc++ = *s_to_uc++;
+	return (dest);
 }
