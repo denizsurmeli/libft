@@ -9,7 +9,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Bump CMake
+        run : sudo apt-get install cmake
+      - uses: actions/checkout@v3
       - name: Run unit tests
         uses: HorstBaerbel/action-ctest@1.1
         with:
