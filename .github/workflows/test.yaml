@@ -10,8 +10,10 @@ jobs:
     steps:
       - name : Get deps
         run : sudo apt-get install clang-format g++ gcc cmake wget
+      - name : Get into source directory
+        run : cd ../../.
       - name : Format files
-        run : sh format_files.sh
+        run : sh ../../format_files.sh
       - name: Build and Test
-        run: sh run_tests.sh
+        run: sh ../.../run_tests.sh
     
