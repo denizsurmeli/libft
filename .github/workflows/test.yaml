@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - test-flow
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,8 +13,8 @@ jobs:
         run : sudo apt-get install clang-format g++ gcc cmake wget
       - name : Get into source directory
         run : cd ../../.
-      - name : Format files
-        run : sh format_files.sh
-      - name: Build and Test
-        run: sh run_tests.sh
+      - name : Build source
+        run : mkdir build && cmake -S . -B build && cmake --build build
+      - name : Run CTest
+        run : cd build/tests && ctest
     
