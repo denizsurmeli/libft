@@ -4,16 +4,12 @@ on:
   push:
     branches:
       - main
+      - test-flow
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  run-tests:
+    name : Run container for build and tests
+    runs-on : ubuntu-latest
     steps:
-      - name : Get deps
-        run : sudo apt-get install clang-format g++ gcc cmake wget
-      - name : Get into source directory
-        run : cd ../../.
-      - name : Format files
-        run : sh format_files.sh
-      - name: Build and Test
-        run: sh run_tests.sh
-    
+      - uses: actions/checkout@v3
+      - name: Build test container
+        run : docker build . -t=libft_test:latest
