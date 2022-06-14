@@ -14,11 +14,6 @@ jobs:
     steps:
       - name : Get deps
         run : sudo apt-get install clang-format g++ gcc cmake wget tree
-      - name: Show the directory that we are in
-        run : pwd && tree . && tree ../. && tree ../../
-      - name : Get into source directory
-        working-directory:
-        run : cd ../../.
       - name : Build source
         run : mkdir build && cmake -S . -B build && cmake --build build
       - name : Run CTest
