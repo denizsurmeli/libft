@@ -6,14 +6,10 @@ on:
       - main
       - test-flow
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  run-tests:
+    runs-on : ubuntu-latest
     steps:
-      - name: Bump CMake
-        run : sudo apt-get install cmake
-      - uses: actions/checkout@v3
-      - name: Run unit tests
-        uses: HorstBaerbel/action-ctest@1.1
-        with:
-          sourcedir: '.'
-          builddir: 'build'
+      - name:Checkout code
+        run : actions/checkout@v3
+      - name: Build test container
+        run : docker build . -t=libft_test:latest
