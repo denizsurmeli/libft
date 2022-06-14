@@ -8,14 +8,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell : bash
     steps:
-      - name : Get deps
-        run : sudo apt-get install clang-format g++ gcc cmake wget tree
-      - name : Build source
-        run : mkdir build && cmake -S . -B build && cmake --build build
-      - name : Run CTest
-        run : cd build/tests && ctest
-    
+      - uses: actions/checkout@v2
+      - name: Run unit tests
+        uses: HorstBaerbel/action-ctest@1.1
+        with:
+          sourcedir: '.'
+          builddir: 'build'
