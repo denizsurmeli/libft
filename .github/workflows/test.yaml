@@ -1,0 +1,16 @@
+name: Run C++/C tests for Libft
+
+on:
+  push:
+    branches:[ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name : Get deps
+        run : sudo apt-get install clang-format g++ gcc cmake wget
+      - name : Format files
+        run : sh format_files.sh
+      - name: Build and Test
+        run: sh run_tests.sh
+    

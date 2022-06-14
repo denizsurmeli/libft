@@ -20,6 +20,7 @@ TEST(libft, ft_memset){
 	{
 		EXPECT_EQ(temp_mem[i],(unsigned char) c) << "Values differ between libc and implementation.";
 	}
+	delete mem,temp_mem;
 }
 
 TEST(libft, ft_bzero){
@@ -31,6 +32,7 @@ TEST(libft, ft_bzero){
 	for(size_t i = 0 ; i < memsize; i++){
 		EXPECT_EQ(temp_mem[i], 0) << "Values differ between libc and implementation.";
 	}
+	delete mem,temp_mem;
 
 }
 
@@ -45,6 +47,8 @@ TEST(libft,ft_memcpy){
 	{
 		EXPECT_EQ(mem[i],dest[i]) << "Values differ between libc and implementation.";
 	}
+
+	delete mem,dest;
 }
 
 TEST(libft, ft_memccpy) {
@@ -65,6 +69,8 @@ TEST(libft, ft_memccpy) {
 	}
 	EXPECT_EQ(l1 - dest_1,l2 - dest_2) << "Distance between memory locations of locations are not consistent between libc and implementation.";
 	EXPECT_EQ(l1 - dest_1, 17) << "Exact size of memory difference is not met.";
+
+	delete mem,dest_1,dest_2;
 }
 
 TEST(libft, ft_memmove){
@@ -104,4 +110,6 @@ TEST(libft,ft_memchr)
 
 	char *f_nolocate = static_cast<char *>(ft_memchr(mem, 'g', memsize));
 	EXPECT_EQ(f_nolocate,nullptr);
+
+	delete mem;
 }
