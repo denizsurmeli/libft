@@ -7,9 +7,9 @@ on:
       - test-flow
 jobs:
   run-tests:
+    name : Build and test the project.
     runs-on : ubuntu-latest
     steps:
-      - name:Checkout code
-        run : actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Build test container
         run : docker build . -t=libft_test:latest
