@@ -11,6 +11,8 @@ jobs:
     steps:
       - name : Get deps
         run : sudo apt-get install clang-format g++ gcc cmake wget
+      - name: Show the directory that we are in
+        run : pwd
       - name : Get into source directory
         run : cd ../../.
       - name : Build source
