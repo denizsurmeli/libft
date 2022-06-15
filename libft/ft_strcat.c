@@ -1,10 +1,10 @@
-#include <stddef.h>
 #include "libft.h"
+#include <stddef.h>
 
-char	*ft_strcat(char *s1, const char *s2)
+char *ft_strcat(char *s1, const char *s2)
 {
-	size_t	len_s1;
-	size_t	i;
+	size_t len_s1;
+	size_t i;
 
 	len_s1 = ft_strlen(s1);
 	i = 0;

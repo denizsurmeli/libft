@@ -1,5 +1,3 @@
 #!/bin/bash
 
-for file in libft/*.c; do
-  clang-format -i file
-done
+clang-format -i libft/*.c libft/*.h tests/*.cpp
