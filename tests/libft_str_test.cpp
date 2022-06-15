@@ -92,3 +92,33 @@ TEST(libft, ft_strcat)
 
 	delete s1, s2, s3;
 }
+
+
+TEST(libft, ft_strncat)
+{
+	size_t memsize_1 = 64;
+	size_t memsize_2 = 32;
+	size_t memsize_3 = 16;
+
+	char filler_1 = 'a';
+	char filler_2 = 'b';
+
+	char *s1 = static_cast<char *>(malloc(memsize_1));
+	ft_memset(s1, filler_1, memsize_2 - 1);
+	s1[memsize_2 - 1] = '\0';
+
+	char *s2 = static_cast<char *>(malloc(memsize_2));
+	ft_memset(s2, filler_2, memsize_2 - 1);
+	s2[memsize_2 - 1] = '\0';
+
+	ft_strncat(s1, s2,memsize_3);
+
+	char *s3 = static_cast<char *>(malloc(memsize_1 - 1));
+	ft_memset(s3, filler_1, memsize_2 - 1);
+	ft_memset(s3 + memsize_2 - 1, filler_2, memsize_3);
+	s3[memsize_2 + memsize_3 - 1] = '\0';
+
+	EXPECT_EQ(strcmp(s1, s3), 0);
+
+	delete s1, s2, s3;
+}
