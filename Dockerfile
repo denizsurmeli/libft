@@ -7,7 +7,7 @@ RUN apt-get update \
     gcc \
     cmake \
     make \
-    wget
+    wget \
 
 WORKDIR /src
 COPY . libft
@@ -18,3 +18,5 @@ RUN cmake -S . -B build
 RUN cmake --build build
 WORKDIR /src/libft/build/tests
 RUN ctest
+
+
