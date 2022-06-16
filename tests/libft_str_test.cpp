@@ -122,3 +122,34 @@ TEST(libft, ft_strncat)
 
 	delete s1, s2, s3;
 }
+
+TEST(libft, ft_strlcat)
+{
+	size_t memsize_1 = 64;
+	size_t memsize_2 = 32;
+
+	char	*m1 = static_cast<char *>(malloc(memsize_1));
+	char 	*m2 = static_cast<char *>(malloc(memsize_2));
+
+	char 	fill = 'a';
+	char 	subfill = 'b';
+
+
+	ft_memset(m1,fill, memsize_2);
+	m1[memsize_2] = 0;
+	//m1:32aNULL -> 32lenstr, 33 bytes, left 31
+	ft_memset(m2,subfill, memsize_2 - 1);
+	m2[memsize_2 - 1] = 0;
+	//m2:31bNUll -> 31lenstr, 32 bytes, left 0
+	size_t res = ft_strlcat(m1,m2,memsize_1);
+	EXPECT_EQ(res, memsize_2 * 2 - 1);
+	for(size_t i = 0; i < memsize_2; i++){
+		EXPECT_EQ(*(m1+i), fill);
+	}
+	for(size_t i = memsize_2;i < memsize_1 - 1; i++){
+		EXPECT_EQ(*(m1+i), subfill);
+	}
+	EXPECT_EQ(*(m1+memsize_1 - 1),0);
+
+	delete m1,m2;
+}
