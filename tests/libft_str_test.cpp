@@ -220,3 +220,16 @@ TEST(libft, ft_strncmp)
 	EXPECT_TRUE(compare_strncmp("Tripouille", "Tripouille", 42));
 	EXPECT_TRUE(compare_strncmp("", "1", 0));
 }
+
+static bool compare_atoi(const char *s)
+{
+	return ft_atoi(s) == atoi(s);
+}
+
+TEST(libft, ft_atoi)
+{
+	std::vector<char *> words = {"     -100", " -+ 123", "-2147483648","2147483647", "-1234--12-34=","214812aaa328941"};
+	for(auto word:words){
+		EXPECT_TRUE(compare_atoi(word)) << "Word:"<<word<<"\tft_atoi:" << ft_atoi(word) << "\tatoi:"<< atoi(word) << std::endl;
+	}
+}
