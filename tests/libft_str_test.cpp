@@ -153,3 +153,70 @@ TEST(libft, ft_strlcat)
 
 	delete m1,m2;
 }
+
+TEST(libft, ft_strchr)
+{
+	size_t memsize_1 = 64;
+
+	char *m1 = static_cast<char *>(malloc(memsize_1));
+
+	char haystack = 'a';
+	char needle = 'b';
+	ft_memset(m1, haystack, memsize_1 - 1);
+	m1[memsize_1 - 1] = '\0';
+
+	m1[41] = needle;
+	EXPECT_EQ(ft_strchr(m1,needle),strchr(m1,needle));
+	EXPECT_EQ(ft_strchr(m1,0x64),strchr(m1,0x64));
+}
+
+TEST(libft, ft_strrchr)
+{
+	size_t memsize_1 = 64;
+
+	char *m1 = static_cast<char *>(malloc(memsize_1));
+
+	char haystack = 'a';
+	char needle = 'b';
+	ft_memset(m1, haystack, memsize_1 - 1);
+	m1[memsize_1 - 1] = '\0';
+
+	m1[41] = needle;
+	m1[45] = needle;
+	EXPECT_EQ(ft_strrchr(m1,needle),strrchr(m1,needle));
+	EXPECT_EQ(ft_strrchr(m1,0x64),strrchr(m1,0x64));
+}
+
+TEST(libft, ft_strstr)
+{
+	char	*haystack = "aaaaaaaaaaaaaaaaaaaaaaaaFINDaaaaaaaaaaaaaaaaaa";
+	char	*needle = "FIND";
+	char 	*non_needle = "NON";
+
+	EXPECT_EQ(ft_strstr(haystack,needle),strstr(haystack,needle));
+	EXPECT_EQ(ft_strstr(haystack,non_needle),strstr(haystack,non_needle));
+}
+
+TEST(libft, ft_strcmp)
+{
+	char	*s1 = "AAAAAAAAAAAAABBBBBBBBBB";
+	char 	*s2 = "AAAAAAAAAAAAACCCCCCCCCC";
+
+	EXPECT_EQ(ft_strcmp(s1,s2), strcmp(s1,s2));
+	EXPECT_EQ(ft_strcmp(s1,""), strcmp(s1,""));
+	EXPECT_EQ(ft_strcmp("",""),strcmp("",""));
+}
+static bool compare_strncmp(const char *s1, const char *s2, size_t n)
+{
+	return ft_strncmp(s1,s2,n)==strncmp(s1,s2,n);
+}
+
+TEST(libft, ft_strncmp)
+{
+	// https://github.com/Tripouille/libftTester/blob/master/tests/ft_strncmp_test.cpp
+	EXPECT_TRUE(compare_strncmp("t","0",0));
+	EXPECT_TRUE(compare_strncmp("1234","12345",3));
+	EXPECT_TRUE(compare_strncmp("Tripouille", "Tripouille", 42));
+	EXPECT_TRUE(compare_strncmp("Tripouille", "Tripouille", 42));
+	EXPECT_TRUE(compare_strncmp("", "1", 0));
+}

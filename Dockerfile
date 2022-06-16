@@ -6,8 +6,7 @@ RUN apt-get update \
     g++ \
     gcc \
     cmake \
-    make \
-    wget
+    make
 
 WORKDIR /src
 COPY . libft
