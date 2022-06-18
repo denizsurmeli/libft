@@ -143,3 +143,14 @@ TEST(libft, ft_memcmp)
 
 	delete mem_1, mem_2;
 }
+
+TEST(libft, ft_memalloc)
+{
+	size_t	memsize = 64;
+
+	char *mem = static_cast<char *>(ft_memalloc(memsize));
+
+	for(size_t i = 0 ; i < memsize ; i++){
+		EXPECT_EQ(mem[i], 0);
+	}
+}
