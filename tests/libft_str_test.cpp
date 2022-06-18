@@ -234,4 +234,32 @@ TEST(libft, ft_atoi)
 		EXPECT_TRUE(compare_atoi(word)) << "Word:"<<word<<"\tft_atoi:" << ft_atoi(word) << "\tatoi:"<< atoi(word) << std::endl;
 	}
 }
-	
+
+TEST(libft, ft_strnew)
+{
+	size_t	memsize = 64;
+	char	*loc = ft_strnew(memsize);
+
+	for(size_t i = 0 ; i < memsize + 1; i++){
+		EXPECT_EQ(loc[i],0);
+	}
+
+	delete loc;
+}
+
+void	to_a(char *c){
+	*c = 'a';
+}
+
+TEST(libft, ft_striter)
+{
+	size_t memsize = 64;
+	void	*toc = malloc(memsize);
+	char	*loc = static_cast<char *>(ft_memset(toc,'b',memsize-1));
+	loc[memsize-1] = '\0';
+	ft_striter(loc,to_a);
+	for(size_t i = 0 ; i< memsize - 1; i++){
+		EXPECT_EQ(loc[i],'a') << "i:"<<i;
+	}
+	delete toc;
+}
