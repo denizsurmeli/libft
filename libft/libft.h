@@ -39,7 +39,8 @@ int ft_strncmp(const char *s1, const char *s2, size_t n);
 char *ft_strnew(size_t size);
 void ft_strclr(char *s);
 void ft_striter(char *s, void (*f)(char *));
-
+void ft_striteri(char *s, void (*f)(unsigned int i, char *c));
+char *ft_strmap(char const *s, char (*f)(char));
 int ft_atoi(const char *src);
 int ft_isalpha(int c);
 int ft_isdigit(int c);

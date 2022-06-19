@@ -251,6 +251,10 @@ void	to_a(char *c){
 	*c = 'a';
 }
 
+char	to_c(char c){
+	return 'c';
+}
+
 TEST(libft, ft_striter)
 {
 	size_t memsize = 64;
@@ -262,4 +266,19 @@ TEST(libft, ft_striter)
 		EXPECT_EQ(loc[i],'a') << "i:"<<i;
 	}
 	delete toc;
+}
+
+TEST(libft, ft_str)
+{
+	size_t memsize = 64;
+	void	*toc = malloc(memsize);
+	char 	*loc = static_cast<char *>(ft_memset(toc, 'b', memsize - 1));
+	loc[memsize - 1] = 0;
+	char	*mapped = ft_strmap(loc,to_c);
+	for(size_t i = 0 ; i < memsize - 1; i++)
+	{
+		EXPECT_EQ(mapped[i], 'c');
+	}
+	EXPECT_EQ(mapped[memsize - 1] ,0);
+	delete mapped, toc;
 }

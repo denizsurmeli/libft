@@ -33,6 +33,8 @@ add_library(libft STATIC
     ft_strnew.c
     ft_strdel.c
     ft_striter.c
+    ft_striteri.c
+    ft_strmap.c
 )
 
 target_compile_options(libft PRIVATE -Werror -Wextra -Wall)
