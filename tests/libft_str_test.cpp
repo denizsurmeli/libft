@@ -318,3 +318,17 @@ TEST(libft, ft_strsub)
 	}
 	EXPECT_EQ(mem2[16],0x00);
 }
+
+TEST(libft, ft_strjoin)
+{
+	char *mem1 = ft_strjoin("ABC","DEF");
+	EXPECT_EQ(ft_strequ(mem1,"ABCDEF"),1);
+
+	char *mem2 = ft_strjoin(NULL,NULL);
+	EXPECT_EQ(mem2==NULL, 1);
+
+	char *mem3= ft_strjoin("ABC",NULL);
+	EXPECT_EQ(ft_strequ(mem3,"ABC"),1);
+
+	delete mem1,mem2,mem3;
+}
