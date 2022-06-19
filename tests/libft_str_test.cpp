@@ -268,7 +268,7 @@ TEST(libft, ft_striter)
 	delete toc;
 }
 
-TEST(libft, ft_str)
+TEST(libft, ft_strmap)
 {
 	size_t memsize = 64;
 	void	*toc = malloc(memsize);
@@ -281,4 +281,14 @@ TEST(libft, ft_str)
 	}
 	EXPECT_EQ(mapped[memsize - 1] ,0);
 	delete mapped, toc;
+}
+
+TEST(libft, ft_strequ)
+{
+	EXPECT_TRUE(ft_strequ("Test","Test"));
+	EXPECT_TRUE(ft_strequ("",""));
+	EXPECT_TRUE(ft_strequ(NULL,NULL));
+	EXPECT_FALSE(ft_strequ("Test","Not"));
+	EXPECT_FALSE(ft_strequ("","Test"));
+	EXPECT_FALSE(ft_strequ(NULL,"TEST"));
 }
