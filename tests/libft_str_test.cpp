@@ -302,3 +302,19 @@ TEST(libft, ft_strnequ)
 	EXPECT_TRUE(ft_strnequ("","",0));
 	EXPECT_TRUE(ft_strnequ(NULL,NULL,10));
 }
+
+TEST(libft, ft_strsub)
+{
+	size_t memsize_1 = 64;
+	size_t memsize_2 = 32;
+
+	char *mem = (char *) ft_memalloc(memsize_1);
+	ft_memset((void *) mem, 0x61 , memsize_1 - 1);
+	mem[memsize_1 - 1] ='\0';
+
+	char *mem2 = ft_strsub((char const *)mem, memsize_2, 16);
+	for(size_t i = 0; i < 16; i++){
+		EXPECT_EQ(mem2[i], 0x61) << "i:"<<i;
+	}
+	EXPECT_EQ(mem2[16],0x00);
+}

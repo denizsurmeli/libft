@@ -37,6 +37,7 @@ add_library(libft STATIC
     ft_strmap.c
     ft_strequ.c
     ft_strnequ.c
+    ft_strsub.c
 )
 
 target_compile_options(libft PRIVATE -Werror -Wextra -Wall)
