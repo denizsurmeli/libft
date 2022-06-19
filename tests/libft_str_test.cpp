@@ -292,3 +292,13 @@ TEST(libft, ft_strequ)
 	EXPECT_FALSE(ft_strequ("","Test"));
 	EXPECT_FALSE(ft_strequ(NULL,"TEST"));
 }
+
+TEST(libft, ft_strnequ)
+{
+	EXPECT_TRUE(ft_strnequ("test","test",2));
+	EXPECT_TRUE(ft_strnequ("testthis","testthiK",7));
+	EXPECT_FALSE(ft_strnequ(NULL,"TEST",1));
+	EXPECT_FALSE(ft_strnequ("TESTTK","TESTTT",6));
+	EXPECT_TRUE(ft_strnequ("","",0));
+	EXPECT_TRUE(ft_strnequ(NULL,NULL,10));
+}
