@@ -332,3 +332,9 @@ TEST(libft, ft_strjoin)
 
 	delete mem1,mem2,mem3;
 }
+
+TEST(libft, ft_strtrim)
+{
+	EXPECT_EQ(strcmp(ft_strtrim(" whitespace is this "),"whitespace is this"),0) << ft_strtrim(" whitespace is this ");
+	EXPECT_EQ(strcmp(ft_strtrim("     whitespace is \t this \n with this      \t \t \t"),"whitespace is \t this \n with this"),0) << ft_strtrim("     whitespace is \t this \n with this      \t \t \t");
+}
