@@ -7,7 +7,29 @@ static int is_whitespace(char c)
 		return 1;
 	return 0;
 }
+static int find_begin(char const *str)
+{
+	size_t i;
 
+	i = 0;
+	while (is_whitespace(str[i]))
+		i++;
+	return i;
+}
+
+static int find_end(char const *str)
+{
+	size_t i;
+
+	if (ft_strlen(str) == 0)
+		return (0);
+	i = ft_strlen(str) - 1;
+	if (i == 0)
+		return (0);
+	while (is_whitespace(str[i]))
+		i--;
+	return i;
+}
 char *ft_strtrim(char const *s)
 {
 	char *mem;
@@ -15,14 +37,16 @@ char *ft_strtrim(char const *s)
 	size_t j;
 	size_t k;
 
-	i = 0;
-	j = ft_strlen(s) - 1;
+	if (s == NULL)
+		return NULL;
+	i = find_begin(s);
+	j = find_end(s);
 	k = 0;
-	while (is_whitespace(s[i]))
-		i++;
-	while (is_whitespace(s[j]))
-		j--;
+	if (i >= j)
+		return NULL;
 	mem = (char *)malloc((j - i + 1) * sizeof(char));
+	if (mem == NULL)
+		return NULL;
 	while (i < j + 1)
 	{
 		mem[k] = s[i];

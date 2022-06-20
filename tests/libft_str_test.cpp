@@ -337,4 +337,5 @@ TEST(libft, ft_strtrim)
 {
 	EXPECT_EQ(strcmp(ft_strtrim(" whitespace is this "),"whitespace is this"),0) << ft_strtrim(" whitespace is this ");
 	EXPECT_EQ(strcmp(ft_strtrim("     whitespace is \t this \n with this      \t \t \t"),"whitespace is \t this \n with this"),0) << ft_strtrim("     whitespace is \t this \n with this      \t \t \t");
+	EXPECT_EQ(ft_strtrim(" ") == NULL,true);
 }
