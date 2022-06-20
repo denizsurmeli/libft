@@ -303,7 +303,7 @@ TEST(libft, ft_strnequ)
 	EXPECT_TRUE(ft_strnequ(NULL,NULL,10));
 }
 
-TEST(libft, ft_strsub)
+TEST(libft, ft_substr)
 {
 	size_t memsize_1 = 64;
 	size_t memsize_2 = 32;
@@ -312,7 +312,7 @@ TEST(libft, ft_strsub)
 	ft_memset((void *) mem, 0x61 , memsize_1 - 1);
 	mem[memsize_1 - 1] ='\0';
 
-	char *mem2 = ft_strsub((char const *)mem, memsize_2, 16);
+	char *mem2 = ft_substr((char const *)mem, memsize_2, 16);
 	for(size_t i = 0; i < 16; i++){
 		EXPECT_EQ(mem2[i], 0x61) << "i:"<<i;
 	}
@@ -335,7 +335,8 @@ TEST(libft, ft_strjoin)
 
 TEST(libft, ft_strtrim)
 {
-	EXPECT_EQ(strcmp(ft_strtrim(" whitespace is this "),"whitespace is this"),0) << ft_strtrim(" whitespace is this ");
-	EXPECT_EQ(strcmp(ft_strtrim("     whitespace is \t this \n with this      \t \t \t"),"whitespace is \t this \n with this"),0) << ft_strtrim("     whitespace is \t this \n with this      \t \t \t");
-	EXPECT_EQ(ft_strtrim(" ") == NULL,true);
+	char const *set = " \t\n";
+	EXPECT_EQ(strcmp(ft_strtrim(" whitespace is this ",set),"whitespace is this"),0) << ft_strtrim(" whitespace is this ",set);
+	EXPECT_EQ(strcmp(ft_strtrim("     whitespace is \t this \n with this      \t \t \t",set),"whitespace is \t this \n with this"),0) << ft_strtrim("     whitespace is \t this \n with this      \t \t \t",set);
+	EXPECT_EQ(ft_strtrim(" ",set) == NULL,true);
 }

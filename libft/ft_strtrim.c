@@ -1,23 +1,29 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int is_whitespace(char c)
+static int is_in(char c, const char *set)
 {
-	if (c == ' ' || c == '\n' || c == '\t')
-		return 1;
+	size_t i;
+	i = 0;
+	while (set[i] != 0)
+	{
+		if (set[i] == c)
+			return 1;
+		i++;
+	}
 	return 0;
 }
-static int find_begin(char const *str)
+static int find_begin(char const *str, char const *set)
 {
 	size_t i;
 
 	i = 0;
-	while (is_whitespace(str[i]))
+	while (is_in(str[i], set))
 		i++;
 	return i;
 }
 
-static int find_end(char const *str)
+static int find_end(char const *str, char const *set)
 {
 	size_t i;
 
@@ -26,11 +32,11 @@ static int find_end(char const *str)
 	i = ft_strlen(str) - 1;
 	if (i == 0)
 		return (0);
-	while (is_whitespace(str[i]))
+	while (is_in(str[i], set))
 		i--;
 	return i;
 }
-char *ft_strtrim(char const *s)
+char *ft_strtrim(char const *s, char const *set)
 {
 	char *mem;
 	size_t i;
@@ -39,8 +45,8 @@ char *ft_strtrim(char const *s)
 
 	if (s == NULL)
 		return NULL;
-	i = find_begin(s);
-	j = find_end(s);
+	i = find_begin(s, set);
+	j = find_end(s, set);
 	k = 0;
 	if (i >= j)
 		return NULL;

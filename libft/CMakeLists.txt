@@ -40,6 +40,9 @@ add_library(libft STATIC
     ft_strsub.c
     ft_strjoin.c
     ft_strtrim.c
+    ft_strlcpy.c
+    ft_calloc.c
+	ft_strsplit.c
 )
 
 target_compile_options(libft PRIVATE -Werror -Wextra -Wall)
