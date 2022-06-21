@@ -340,3 +340,51 @@ TEST(libft, ft_strtrim)
 	EXPECT_EQ(strcmp(ft_strtrim("     whitespace is \t this \n with this      \t \t \t",set),"whitespace is \t this \n with this"),0) << ft_strtrim("     whitespace is \t this \n with this      \t \t \t",set);
 	EXPECT_EQ(ft_strtrim(" ",set) == NULL,true);
 }
+static size_t ft_count_words(char const *s, char c)
+{
+	size_t count;
+	int i;
+	int j;
+
+	i = 0;
+	j = ft_strlen(s) - 1;
+	count = 0;
+	while(s[i] == c)
+		i++;
+	while(s[j] == c)
+		j--;
+	while(i < j)
+	{
+		while(s[i] != c)
+			i++;
+		while(s[i] == c)
+			i++;
+		count++;
+	}
+	return (count);
+}
+
+TEST(libft, ft_strsplit)
+{
+	char **mem;
+	int count;
+	std::map<char *, std::vector<char *>> dict
+	{
+		{"****aaaa****aaaa***",std::vector<char *>{"aaaa","aaaa"}},
+		{"aaaa*****aaaa*a*a*a***",std::vector<char *>{"aaaa","aaaa","a","a","a"}},
+		{"*****aaaa***aaaa",std::vector<char *>{"aaaa","aaaa"}},
+		{"aaaa***aaaa",std::vector<char *>{"aaaa","aaaa"}},
+		{"aaaaaaaaaaa",std::vector<char *>{"aaaaaaaaaaa"}},
+		{"***********",std::vector<char *>{}}
+	};
+	for(auto elem:dict)
+	{
+		mem = ft_strsplit(elem.first, '*');
+		count = ft_count_words(elem.first,'*');
+		for(int i = 0 ; i < count;i++)
+		{
+			EXPECT_EQ(std::string(mem[i]),std::string(elem.second.at(i)));
+		}
+		delete mem;
+	}
+}
