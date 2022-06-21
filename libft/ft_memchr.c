@@ -22,8 +22,11 @@ void *ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if (*((unsigned char *)(s + i)) == c)
+		if (*((char *)(s + i)) == c)
+		{
 			loc = (void *)(s + i);
+			break;
+		}
 		i++;
 	}
 	return (loc);

@@ -11,7 +11,7 @@ char *ft_strncpy(char *dest, const char *src, size_t l)
 		dest[i] = src[i];
 		i++;
 	}
-	if (i - 1 < l)
-		dest[i] = '\0';
+	while (i < l)
+		dest[i++] = '\0';
 	return (dest);
 }

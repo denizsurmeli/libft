@@ -24,17 +24,15 @@ char *ft_itoa(int n)
 	char *mem;
 	int k;
 
-	if (n == 2147483647)
-		return "2147483647";
 	if (n == -2147483648)
 		return "-2147483648";
 	if (n == 0)
 		return "0";
-	k = count_bits(n) - 1;
+	k = count_bits(n);
 	mem = (char *)malloc((count_bits(n) + 1) * sizeof(char));
 	if (mem == NULL)
 		return NULL;
-	mem[count_bits(n)] = '\0';
+	mem[k--] = '\0';
 	if (n < 0)
 	{
 		n *= -1;

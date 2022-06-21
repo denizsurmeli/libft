@@ -25,7 +25,7 @@ static size_t ft_count_words(char const *s, char c)
 	return (count);
 }
 
-char **ft_strsplit(char const *s, char c)
+char **ft_split(char const *s, char c)
 {
 	char **words;
 	size_t i;
@@ -34,6 +34,8 @@ char **ft_strsplit(char const *s, char c)
 	i = 0;
 	k = 0;
 	words = (char **)malloc(sizeof(char **) * (ft_count_words(s, c) + 1));
+	if (words == NULL)
+		return NULL;
 	while (s[i] != 0)
 	{
 		while ((s[i] == c || s[i] == 0) && i < ft_strlen(s))
@@ -46,6 +48,6 @@ char **ft_strsplit(char const *s, char c)
 		words[k++] = ft_substr(s, i, j - i);
 		i = j;
 	}
-	words[k] = 0;
+	words[k] = NULL;
 	return words;
 }

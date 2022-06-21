@@ -52,16 +52,15 @@ TEST(libft, ft_strncpy)
 	EXPECT_EQ(strcmp(dest1, src1), 0);
 	delete dest1;
 
-	dest1 = static_cast<char *>(malloc((memsize_1) * sizeof(char)));
+	dest1 = static_cast<char *>(malloc((memsize_1 + 1) * sizeof(char)));
 	dest1 = static_cast<char *>(ft_memset(dest1, fill_value + 1, memsize_1));
+	dest1[memsize_1] = '\0';
 	ft_strncpy(dest1, src1, memsize_2);
 
 	for (size_t i = 0; i < memsize_2; i++)
 	{
 		EXPECT_EQ(dest1[i], src1[i]);
 	}
-	EXPECT_EQ(dest1[memsize_2], '\0');
-
 	delete src1, dest1;
 }
 
@@ -379,7 +378,7 @@ TEST(libft, ft_strsplit)
 	};
 	for(auto elem:dict)
 	{
-		mem = ft_strsplit(elem.first, '*');
+		mem = ft_split(elem.first, '*');
 		count = ft_count_words(elem.first,'*');
 		for(int i = 0 ; i < count;i++)
 		{

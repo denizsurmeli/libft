@@ -16,6 +16,6 @@ char *ft_strmap(char const *s, char (*f)(char))
 		mem[i] = f(s[i]);
 		i++;
 	}
-
+	mem[i] = 0;
 	return mem;
 }
