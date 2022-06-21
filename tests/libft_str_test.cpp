@@ -388,3 +388,23 @@ TEST(libft, ft_strsplit)
 		delete mem;
 	}
 }
+
+TEST(libft, ft_itoa)
+{
+	std::map<int,std::string> dict
+	{
+		{-100,"-100"},
+		{100,"100"},
+		{0,"0"},
+		{2147483647,"2147483647"},
+		{-2147483648,"-2147483648"},
+		{2147483642,"2147483642"},
+		{-2147483645,"-2147483645"},
+		{1,"1"},
+		{-1,"-1"}
+	};
+	for(auto elem:dict)
+	{
+		EXPECT_EQ(std::string(ft_itoa(elem.first)),elem.second);
+	}
+}

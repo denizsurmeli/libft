@@ -43,6 +43,6 @@ add_library(libft STATIC
     ft_strlcpy.c
     ft_calloc.c
 	ft_strsplit.c
-)
+		ft_itoa.c)
 
 target_compile_options(libft PRIVATE -Werror -Wextra -Wall)
