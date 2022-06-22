@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizsurmeli <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 18:36:32 by denizsurmeli      #+#    #+#             */
-/*   Updated: 2022/06/22 17:15:03 by denizsurmeli     ###   ########.fr       */
+/*   Created: 2022/06/22 17:15:00 by denizsurmeli      #+#    #+#             */
+/*   Updated: 2022/06/22 17:15:00 by denizsurmeli     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
-void	*ft_memset(void *b, int c, size_t l)
+int	ft_lstsize(t_list *lst)
 {
-	size_t			i;
-	unsigned char	*b_to_uc;
+	int	i;
 
-	b_to_uc = (unsigned char *)b;
 	i = 0;
-	while (i < l)
+	while (lst != NULL)
 	{
-		b_to_uc[i] = (unsigned char)c;
 		i++;
+		lst = lst->next;
 	}
-	return (b = b_to_uc);
+	return (i);
 }
