@@ -1,53 +1,63 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t ft_count_words(char const *s, char c)
+static int count_words(const char *str, char c)
 {
-	size_t count;
 	int i;
-	int j;
+	int trigger;
 
 	i = 0;
-	j = ft_strlen(s) - 1;
-	count = 0;
-	while (s[i++] == c)
-		;
-	while (s[j--] == c)
-		;
-	while (i < j)
+	trigger = 0;
+	while (*str)
 	{
-		while (s[i++] != c)
-			;
-		while (s[i++] == c)
-			;
-		count++;
+		if (*str != c && trigger == 0)
+		{
+			trigger = 1;
+			i++;
+		}
+		else if (*str == c)
+			trigger = 0;
+		str++;
 	}
-	return (count);
+	return (i);
+}
+
+static char *word_dup(const char *str, int start, int finish)
+{
+	char *word;
+	int i;
+
+	i = 0;
+	word = malloc((finish - start + 1) * sizeof(char));
+	while (start < finish)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
 }
 
 char **ft_split(char const *s, char c)
 {
-	char **words;
 	size_t i;
 	size_t j;
-	size_t k;
+	int index;
+	char **split;
+
+	if (!s || !(split = malloc((count_words(s, c) + 1) * sizeof(char *))))
+		return (0);
 	i = 0;
-	k = 0;
-	words = (char **)malloc(sizeof(char **) * (ft_count_words(s, c) + 1));
-	if (words == NULL)
-		return NULL;
-	while (s[i] != 0)
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen(s))
 	{
-		while ((s[i] == c || s[i] == 0) && i < ft_strlen(s))
-			i++;
-		if (s[i] == 0)
-			break;
-		j = i + 1;
-		while ((s[j] != c || s[j] == 0) && j < ft_strlen(s))
-			j++;
-		words[k++] = ft_substr(s, i, j - i);
-		i = j;
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		{
+			split[j++] = word_dup(s, index, i);
+			index = -1;
+		}
+		i++;
 	}
-	words[k] = NULL;
-	return words;
+	split[j] = 0;
+	return (split);
 }

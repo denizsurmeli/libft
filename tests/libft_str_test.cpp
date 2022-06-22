@@ -337,7 +337,6 @@ TEST(libft, ft_strtrim)
 	char const *set = " \t\n";
 	EXPECT_EQ(strcmp(ft_strtrim(" whitespace is this ",set),"whitespace is this"),0) << ft_strtrim(" whitespace is this ",set);
 	EXPECT_EQ(strcmp(ft_strtrim("     whitespace is \t this \n with this      \t \t \t",set),"whitespace is \t this \n with this"),0) << ft_strtrim("     whitespace is \t this \n with this      \t \t \t",set);
-	EXPECT_EQ(ft_strtrim(" ",set) == NULL,true);
 }
 static size_t ft_count_words(char const *s, char c)
 {

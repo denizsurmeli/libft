@@ -1,47 +1,50 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t count_bits(int n)
+static int len(long nb)
 {
-	int bit_count;
+	int len;
 
-	bit_count = 0;
-	if (n < 0)
+	len = 0;
+	if (nb < 0)
 	{
-		bit_count++;
-		n *= -1;
+		nb = nb * -1;
+		len++;
 	}
-	while (n > 0)
+	while (nb > 0)
 	{
-		n /= 10;
-		bit_count++;
+		nb = nb / 10;
+		len++;
 	}
-	return bit_count;
+	return (len);
 }
 
-char *ft_itoa(int n)
+char *ft_itoa(int nb)
 {
-	char *mem;
-	int k;
+	char *str;
+	long n;
+	int i;
 
-	if (n == -2147483648)
-		return "-2147483648";
+	n = nb;
+	i = len(n);
+	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	str[i--] = '\0';
 	if (n == 0)
-		return "0";
-	k = count_bits(n);
-	mem = (char *)malloc((count_bits(n) + 1) * sizeof(char));
-	if (mem == NULL)
-		return NULL;
-	mem[k--] = '\0';
+	{
+		str[0] = 48;
+		return (str);
+	}
 	if (n < 0)
 	{
-		n *= -1;
-		mem[0] = '-';
+		str[0] = '-';
+		n = n * -1;
 	}
 	while (n > 0)
 	{
-		mem[k--] = '0' + (n % 10);
-		n /= 10;
+		str[i] = 48 + (n % 10);
+		n = n / 10;
+		i--;
 	}
-	return mem;
+	return (str);
 }

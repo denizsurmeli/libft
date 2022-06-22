@@ -10,6 +10,8 @@ char *ft_strdup(const char *source)
 
 	len = ft_strlen(source);
 	mem = (char *)malloc(len);
+	if (mem == NULL)
+		return NULL;
 	i = 0;
 	while (i < len)
 	{
