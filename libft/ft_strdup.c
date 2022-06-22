@@ -14,22 +14,24 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-char	*ft_strdup(const char *source)
+char	*ft_strdup(const char *src)
 {
-	size_t	len;
-	size_t	i;
-	char	*mem;
+	char	*new;
+	int		i;
+	int		size;
 
-	len = ft_strlen(source);
-	mem = (char *)malloc(len);
-	if (mem == NULL)
+	size = 0;
+	while (src[size])
+		++size;
+	new = malloc(sizeof(char) * (size + 1));
+	if (!new)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (src[i])
 	{
-		mem[i] = source[i];
+		new[i] = src[i];
 		i++;
 	}
-	mem[i] = '\0';
-	return (mem);
+	new[i] = '\0';
+	return (new);
 }

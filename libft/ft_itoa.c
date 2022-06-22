@@ -13,55 +13,54 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int	len(long nb)
+static char	*ft_array(char *x, unsigned int number, long int len)
 {
-	int	len;
+	while (number > 0)
+	{
+		x[len--] = 48 + (number % 10);
+		number = number / 10;
+	}
+	return (x);
+}
+
+static long int	ft_len(int n)
+{
+	int					len;
 
 	len = 0;
-	if (nb < 0)
+	if (n <= 0)
+		len = 1;
+	while (n != 0)
 	{
-		nb = nb * -1;
 		len++;
-	}
-	while (nb > 0)
-	{
-		nb = nb / 10;
-		len++;
+		n = n / 10;
 	}
 	return (len);
 }
 
-static void	handle_negative_case(char **mem, long *n)
+char	*ft_itoa(int n)
 {
-	if (n < 0)
-	{
-		(*mem)[0] = '-';
-		(*n) *= -1;
-	}
-}
+	char				*x;
+	long int			len;
+	unsigned int		number;
+	int					sign;
 
-char	*ft_itoa(int nb)
-{
-	char	*str;
-	long	n;
-	int		i;
-
-	n = nb;
-	i = len(n);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
+	sign = 1;
+	len = ft_len(n);
+	x = (char *)malloc(sizeof(char) * (len + 1));
+	if (!(x))
 		return (NULL);
-	str[i--] = '\0';
-	handle_negative_case(&str, &n);
+	x[len--] = '\0';
+	if (n == 0)
+		x[0] = '0';
 	if (n < 0)
 	{
-		str[0] = '-';
-		n = n * -1;
+		sign *= -1;
+		number = n * -1;
+		x[0] = '-';
 	}
-	while (n > 0)
-	{
-		str[i--] = 48 + (n % 10);
-		n = n / 10;
-	}
-	return (str);
+	else
+		number = n;
+	x = ft_array(x, number, len);
+	return (x);
 }
