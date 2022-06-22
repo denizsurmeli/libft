@@ -13,9 +13,9 @@
 #include "libft.h"
 #include <stddef.h>
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-	size_t i;
+	size_t	i;
 
 	if (str == NULL)
 		return (0);

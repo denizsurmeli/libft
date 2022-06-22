@@ -13,9 +13,9 @@
 #include "libft.h"
 #include <stddef.h>
 
-void ft_strclr(char *s)
+void	ft_strclr(char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (s)

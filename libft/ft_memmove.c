@@ -13,10 +13,10 @@
 #include "libft.h"
 #include <stddef.h>
 
-void *ft_memmove(void *dest, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	unsigned char *d_to_uc;
-	unsigned char *s_to_uc;
+	unsigned char	*d_to_uc;
+	unsigned char	*s_to_uc;
 
 	d_to_uc = (unsigned char *)dest;
 	s_to_uc = (unsigned char *)src;

@@ -13,9 +13,9 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int len(long nb)
+static int	len(long nb)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (nb < 0)
@@ -31,22 +31,28 @@ static int len(long nb)
 	return (len);
 }
 
-char *ft_itoa(int nb)
+static void	handle_negative_case(char **mem, long *n)
 {
-	char *str;
-	long n;
-	int i;
+	if (n < 0)
+	{
+		(*mem)[0] = '-';
+		(*n) *= -1;
+	}
+}
+
+char	*ft_itoa(int nb)
+{
+	char	*str;
+	long	n;
+	int		i;
 
 	n = nb;
 	i = len(n);
-	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
 		return (NULL);
 	str[i--] = '\0';
-	if (n == 0)
-	{
-		str[0] = 48;
-		return (str);
-	}
+	handle_negative_case(&str, &n);
 	if (n < 0)
 	{
 		str[0] = '-';
@@ -54,9 +60,8 @@ char *ft_itoa(int nb)
 	}
 	while (n > 0)
 	{
-		str[i] = 48 + (n % 10);
+		str[i--] = 48 + (n % 10);
 		n = n / 10;
-		i--;
 	}
 	return (str);
 }
